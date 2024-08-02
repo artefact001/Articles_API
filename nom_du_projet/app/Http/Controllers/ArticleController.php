@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Articles_model;
 use Illuminate\Http\Request;
 
 
@@ -12,7 +13,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return Article::all();
+        return Articles_model::all();
     }
 
     /**
@@ -25,7 +26,7 @@ class ArticleController extends Controller
             'body' => 'required|string',
         ]);
 
-        return Article::create($request->all());
+        return Articles_model::create($request->all());
 
     }
 
@@ -34,7 +35,7 @@ class ArticleController extends Controller
      */
     public function show(string $id)
     {
-        $article = Article::find($id);
+        $article = Articles_model::find($id);
         if (!$article) {
             return response()->json(['message' => 'article non trouvée'], 404);
 
@@ -47,7 +48,7 @@ class ArticleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $article = Article::find($id);
+        $article = Articles_model::find($id);
         if (!$article) {
             return response()->json(['message' => 'article non trouvée'], 404);
         }
@@ -64,7 +65,7 @@ class ArticleController extends Controller
      */
     public function destroy(string $id)
     {
-        $article = Article::find($id);
+        $article = Articles_model::find($id);
         if (!$article) {
             return response()->json(['message' => 'article non trouvée'], 404);
         }
